@@ -63,7 +63,7 @@ function Method(props) {
             )
         case 3:
             return (
-                <RecordVideo/>
+                <RecordVideo model_video={props.model_video}/>
             )
     }
 }

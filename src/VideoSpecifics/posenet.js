@@ -3,9 +3,10 @@ import * as posenet from '@tensorflow-models/posenet'
 import DynamicTimeWarping from 'dynamic-time-warping'
 
 
-async function getKeyPoints(imageElement,input_coords){
+async function getKeyPoints(imageElement,setData){
     console.log("called",imageElement)
     var poses = [];
+    var poses_detailed = []
     let ans;
     // console.log(cv);
     const net = await posenet.load(tfjs);
@@ -31,6 +32,7 @@ async function getKeyPoints(imageElement,input_coords){
         // at the time as we expect
         const pose = await net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride, maxPoseDetections);
         console.log(pose)
+        poses_detailed.push(pose)
         let arr = []
         for (let j = 0;j<17;j++){
             arr.push([pose.keypoints[j].position['x'],pose.keypoints[j].position['y']])
@@ -47,6 +49,7 @@ async function getKeyPoints(imageElement,input_coords){
         }
         else {
             console.log(no_of_frames)
+            setData(poses_detailed)
             resolve(analyseKeyPoints(poses))
         //   video.load();
         }
@@ -198,10 +201,11 @@ function normalize_array(arr) {
   
   }
 
-async function compare(input_image,model_image){
+async function compare(input_image,model_image, setinputData, setmodelData){
 
-    let input_points = await getKeyPoints(input_image);
-    let model_points = await getKeyPoints(model_image);
+    let input_points = await getKeyPoints(input_image,setinputData);
+    let model_points = await getKeyPoints(model_image,setmodelData);
+
     // input_points.pop()
     // model_points.pop()
     // console.log("input points : ",input_points);
@@ -225,8 +229,8 @@ async function compare(input_image,model_image){
         var dtw = new DynamicTimeWarping(input, model, distFunc);
         // var dtw = new DynamicTimeWarping([0.76822747, 0.64017697], [0.69688069, 0.71718707],distFunc);
         let dist = dtw.getDistance();
-        dist = dist / 10
         // console.log("dist is : ",dist)
+        dist = dist / 10
         let percent_score = percentage_score(dist)
         scores.push(percent_score)
         
