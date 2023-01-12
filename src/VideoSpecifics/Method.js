@@ -13,6 +13,7 @@ function Method(props) {
     }, [])
     
 
+    // eslint-disable-next-line default-case
     switch (step) {
         case 1:
             return (

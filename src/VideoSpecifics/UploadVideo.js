@@ -3,6 +3,7 @@ import * as tfjs from '@tensorflow/tfjs'
 import React, { Component, useEffect, useRef, useState } from 'react'
 import * as posenet from '@tensorflow-models/posenet'
 import compare from './posenet';
+import Analysis from '../pages/Analysis';
 
 function UploadVideo({ model_video }) {
 
@@ -10,8 +11,9 @@ function UploadVideo({ model_video }) {
     const [status, setStatus] = useState(false);
     const [inputData, setinputData] = useState([]);
     const [modelData, setmodelData] = useState([]);
-    const [source, setSource] = React.useState();
-    const [compared, setCompared] = React.useState(false);
+    const [source, setSource] = useState();
+    const [compared, setCompared] = useState(false);
+    const [showAnalysis, setShowAnalysis] = useState(false);
     const inputRef = React.useRef();
 
     let current_time = 0;
@@ -135,9 +137,10 @@ function UploadVideo({ model_video }) {
     return (
         <div>
             <div className='text-center'>
-                {!compared && source && (<button type='button' className='btn btn-info m-3' onClick={async(event) => { event.target.setAttribute('disabled','ture');await compare(videoRef.current, video2Ref.current, setinputData, setmodelData); setCompared(true) }}>Compare</button>)}
+                {!compared && source && (<button type='button' className='btn btn-info m-3' onClick={async(event) => { event.target.setAttribute('disabled','ture');await compare(videoRef.current, video2Ref.current, setinputData, setmodelData); setCompared(true); }}>Compare</button>)}
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(videoRef.current,canvasRef.current,inputData) }}>Show Skeleton input video</button>)}
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(video2Ref.current,canvas2Ref.current,modelData) }}>Show Skeleton model video</button>)}
+                {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { setShowAnalysis(true) }}>Show Analysis</button>)}
                 {/* <button onClick={() => { setStatus(false) }}>Stop</button> */}
             </div>
             <div>
@@ -149,6 +152,7 @@ function UploadVideo({ model_video }) {
                         onChange={handleFileChange}
                         accept=".mov,.mp4"
                         id="test"
+                        style={{display:'none'}}
                     />
                     {!source && <div className='text-center'> <button type='button' className='btn btn-secondary mt-2' onClick={handleChoose}>Choose</button></div>}
                     {source && (
@@ -167,6 +171,9 @@ function UploadVideo({ model_video }) {
                 <canvas style={{ margin: '10px' }} className="webcam" ref={canvas2Ref} />
                 
             </div>
+
+            {showAnalysis ? <Analysis input_data={inputData} /> : null}
+
         </div>
     )
 }
