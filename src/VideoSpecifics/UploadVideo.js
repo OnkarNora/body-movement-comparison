@@ -11,6 +11,7 @@ function UploadVideo({ model_video }) {
     const [status, setStatus] = useState(false);
     const [inputData, setinputData] = useState([]);
     const [modelData, setmodelData] = useState([]);
+    const [scoreData, setScoreData] = useState([]);
     const [source, setSource] = useState();
     const [compared, setCompared] = useState(false);
     const [showAnalysis, setShowAnalysis] = useState(false);
@@ -137,7 +138,7 @@ function UploadVideo({ model_video }) {
     return (
         <div>
             <div className='text-center'>
-                {!compared && source && (<button type='button' className='btn btn-info m-3' onClick={async(event) => { event.target.setAttribute('disabled','ture');await compare(videoRef.current, video2Ref.current, setinputData, setmodelData); setCompared(true); }}>Compare</button>)}
+                {!compared && source && (<button type='button' className='btn btn-info m-3' onClick={async(event) => { event.target.setAttribute('disabled','ture');await compare(videoRef.current, video2Ref.current, setinputData, setmodelData, setScoreData); setCompared(true); }}>Compare</button>)}
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(videoRef.current,canvasRef.current,inputData) }}>Show Skeleton input video</button>)}
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(video2Ref.current,canvas2Ref.current,modelData) }}>Show Skeleton model video</button>)}
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { setShowAnalysis(true) }}>Show Analysis</button>)}
@@ -172,7 +173,7 @@ function UploadVideo({ model_video }) {
                 
             </div>
 
-            {showAnalysis ? <Analysis input_data={inputData} /> : null}
+            {showAnalysis ? <Analysis input_data={scoreData} /> : null}
 
         </div>
     )

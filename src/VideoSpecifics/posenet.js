@@ -201,7 +201,7 @@ function normalize_array(arr) {
   
   }
 
-async function compare(input_image,model_image, setinputData, setmodelData){
+async function compare(input_image,model_image, setinputData, setmodelData, setScoreData){
 
     let input_points = await getKeyPoints(input_image,setinputData);
     let model_points = await getKeyPoints(model_image,setmodelData);
@@ -236,7 +236,10 @@ async function compare(input_image,model_image, setinputData, setmodelData){
         
     }
     console.log(scores)
+    scores.push(mean(scores))
+    setScoreData(scores)
     console.log(mean(scores))
+    
     
 }
 
