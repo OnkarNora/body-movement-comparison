@@ -14,7 +14,7 @@ function UploadVideo({ model_video }) {
     const [scoreData, setScoreData] = useState([]);
     const [source, setSource] = useState();
     const [compared, setCompared] = useState(false);
-    const [showAnalysis, setShowAnalysis] = useState(false);
+    const [showAnalysis, setShowAnalysis] = useState(true);
     const inputRef = React.useRef();
 
     let current_time = 0;

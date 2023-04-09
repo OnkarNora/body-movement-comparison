@@ -15,6 +15,7 @@ import Analysis from "./pages/Analysis";
 import { AddExercise, AddExercisesOne, AddExercisesTwo } from "./pages/Add_exercise";
 import { Explore, ExploreFour, ExploreOne, ExploreThree, ExploreTwo } from "./pages/Explore";
 import Method from "./VideoSpecifics/Method";
+import  ShowGraph from "./pages/ShowGraph";
 import model_video from './model_videos/aniket_hands_up_4.mp4'
 function App() {
 return (
@@ -47,6 +48,7 @@ return (
 		<Route path='/addexercise/addexercise2' element={<AddExercisesTwo/>} />
 		<Route path='/analysis' element={<Analysis/>} />
 		<Route path='/process/video' element={<Method model_video={model_video} />} />
+		<Route path='/process/showgraph' element={<ShowGraph  />} />
 	</Routes>
 	</Router>
 );
