@@ -4,7 +4,7 @@ import UploadVideo from './UploadVideo'
 import RecordVideo from './RecordVideo'
 import { useState } from 'react'
 
-function Method(props) {
+function Method({model_video, isSidebarOpen}) {
 
     const [step, setStep] = useState(1);
 
@@ -60,11 +60,11 @@ function Method(props) {
             )
         case 2:
             return (
-                <UploadVideo model_video={props.model_video} />
+                <UploadVideo model_video={model_video} />
             )
         case 3:
             return (
-                <RecordVideo model_video={props.model_video}/>
+                <RecordVideo isSidebarOpen={isSidebarOpen} model_video={model_video}/>
             )
     }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
@@ -41,41 +41,41 @@ const SidebarWrap = styled.div`
 width: 100%;
 `;
 
-const Sidebar = () => {
-const [sidebar, setSidebar] = useState(false);
+const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
-const showSidebar = () => setSidebar(!sidebar);
+	const showSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
-return (
-	<>
-	<IconContext.Provider value={{ color: "#fff" }}>
-		<Nav>
-		<NavIcon to="#">
-			<FaIcons.FaBars onClick={showSidebar} />
-		</NavIcon>
-		<h5
-			style={{ textAlign: "center",
-					marginLeft: "30px",
+	return (
+		<>
+			<IconContext.Provider value={{ color: "#fff" }}>
+				<Nav>
+					<NavIcon to="#">
+						<FaIcons.FaBars onClick={showSidebar} />
+					</NavIcon>
+					<h5
+						style={{
+							textAlign: "center",
+							marginLeft: "26vw",
+							color: "white",
+						}}
+					>
+						ACCURACY CALCULATION FOR BODY MOVEMENT USING POSE NET
 
-					color: "white" }}
-		>
-			ACCURACY CALCULATION FOR BODY MOVEMENT USING POSE NET
-
-		</h5>
-		</Nav>
-		<SidebarNav sidebar={sidebar}>
-		<SidebarWrap>
-			<NavIcon to="#">
-			<AiIcons.AiOutlineClose onClick={showSidebar} />
-			</NavIcon>
-			{SidebarData.map((item, index) => {
-			return <SubMenu item={item} key={index} />;
-			})}
-		</SidebarWrap>
-		</SidebarNav>
-	</IconContext.Provider>
-	</>
-);
+					</h5>
+				</Nav>
+				<SidebarNav sidebar={isSidebarOpen}>
+					<SidebarWrap>
+						<NavIcon to="#">
+							<AiIcons.AiOutlineClose onClick={showSidebar} />
+						</NavIcon>
+						{SidebarData.map((item, index) => {
+							return <SubMenu item={item} key={index} />;
+						})}
+					</SidebarWrap>
+				</SidebarNav>
+			</IconContext.Provider>
+		</>
+	);
 };
 
 export default Sidebar;

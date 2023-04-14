@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   }
-  .home,
   .services,
   .reports,
   .contact,
@@ -12,8 +11,23 @@
   .analysis,
   .Add_exercise{
   display: flex;
-  margin-left: 260px;
+  margin: 5px;
   font-size: 2rem;
+  transition: all .2s ease-in;
+  }
+  .explore {
+    margin: 20px;
+    transition: all .2s ease-in;
+  }
+  .left-marging{
+    margin-left: 260px !important;
+  }
+  .home{
+    transition: all .2s ease-in;
+  }
+  .record-video{
+    margin: 25px;
+    transition: all .2s ease-in;
   }
   .links{
     text-decoration: none;

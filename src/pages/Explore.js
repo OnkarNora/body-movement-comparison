@@ -1,17 +1,10 @@
 import React from "react";
 import CustomCard from "../components/CustomCard";
 import {videos} from '../VideoSpecifics/videos';
-export const Explore = () => {
-return (
-	<div className="Dashboards">
-	<h1>Explore Page</h1>
-	</div>
-);
-};
 
-export const ExploreOne = () => {
+export const ExploreOne = ({isSidebarOpen}) => {
 return (
-	<div className="Dashboards">
+	<div className={isSidebarOpen ? "explore left-marging":"explore"}>
 		{videos.map((val,idx)=>{return (<CustomCard img={val.img} title={val.title} description={val.description} id={idx} />)})}
 	</div>
 );

@@ -6,55 +6,14 @@ import * as RiIcons from "react-icons/ri";
 
 export const SidebarData = [
 {
-	title: "About Us",
-	path: "/about-us",
+	title: "Home",
+	path: "/",
 	icon: <AiIcons.AiFillHome />,
 	iconClosed: <RiIcons.RiArrowDownSFill />,
 	iconOpened: <RiIcons.RiArrowUpSFill />,
-
-	subNav: [
-	{
-		title: "Our Aim",
-		path: "/about-us/aim",
-		icon: <IoIcons.IoIosPaper />,
-	},
-	{
-		title: "Our Vision",
-		path: "/about-us/vision",
-		icon: <IoIcons.IoIosPaper />,
-	},
-	],
-},
-{
-	title: "Services",
-	path: "/services",
-	icon: <IoIcons.IoIosPaper />,
-	iconClosed: <RiIcons.RiArrowDownSFill />,
-	iconOpened: <RiIcons.RiArrowUpSFill />,
-
-	subNav: [
-	{
-		title: "Service 1",
-		path: "/services/services1",
-		icon: <IoIcons.IoIosPaper />,
-		cName: "sub-nav",
-	},
-	{
-		title: "Service 2",
-		path: "/services/services2",
-		icon: <IoIcons.IoIosPaper />,
-		cName: "sub-nav",
-	},
-	{
-		title: "Service 3",
-		path: "/services/services3",
-		icon: <IoIcons.IoIosPaper />,
-	},
-	],
 },
 {
 	title: "Dashboard",
-	path: "/dashboard",
 	icon: <FaIcons.FaEnvelopeOpenText />,
 
 	iconClosed: <RiIcons.RiArrowDownSFill />,
@@ -85,7 +44,6 @@ export const SidebarData = [
 },
 {
 	title: "Explore",
-	path: "/explore",
 	icon: <FaIcons.FaEnvelopeOpenText />,
 
 	iconClosed: <RiIcons.RiArrowDownSFill />,
@@ -116,7 +74,6 @@ export const SidebarData = [
 },
 {
 	title: "Contribute",
-	path: "/contribute",
 	icon: <IoIcons.IoMdHelpCircle />,
 
 	iconClosed: <RiIcons.RiArrowDownSFill />,
@@ -138,7 +95,6 @@ export const SidebarData = [
 },
 {
 	title: "Add exercise",
-	path: "/addexercise",
 	icon: <IoIcons.IoMdHelpCircle />,
 
 	iconClosed: <RiIcons.RiArrowDownSFill />,
@@ -157,11 +113,6 @@ export const SidebarData = [
 		},
 	],
 
-},
-{
-	title: "Analysis",
-	path: "/analysis",
-	icon: <IoIcons.IoMdHelpCircle />,
 },
 {
 	title: "Contact",
