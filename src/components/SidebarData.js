@@ -15,32 +15,10 @@ export const SidebarData = [
 {
 	title: "Dashboard",
 	icon: <FaIcons.FaEnvelopeOpenText />,
-
+	path: '/dashboard',
 	iconClosed: <RiIcons.RiArrowDownSFill />,
 	iconOpened: <RiIcons.RiArrowUpSFill />,
 
-	subNav: [
-	{
-		title: "Ongoing-exercises",
-		path: "/dashboard/dashboard1",
-		icon: <IoIcons.IoIosPaper />,
-	},
-	{
-		title: "Upcoming-exercises",
-		path: "/dashboard/dashboard2",
-		icon: <IoIcons.IoIosPaper />,
-	},
-	{
-		title: "Past-exercises",
-		path: "/dashboard/dashboard3",
-		icon: <IoIcons.IoIosPaper />,
-	},
-	{
-		title: "Recoomended-exercises",
-		path: "/dashboard/dashboard4",
-		icon: <IoIcons.IoIosPaper />,
-	},
-	],
 },
 {
 	title: "Explore",
