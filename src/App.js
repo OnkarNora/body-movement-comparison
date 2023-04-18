@@ -22,10 +22,7 @@ function App() {
 			/>
 			<Routes>
 				<Route path='/contact' element={<Contact isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard/dashboard1' element={<DashboardsOne isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard/dashboard2' element={<DashboardTwo isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard/dashboard3' element={<DashboardThree isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard/dashboard4' element={<DashboardFour isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/dashboard' element={<DashboardsOne isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore1' element={<ExploreOne isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore2' element={<ExploreTwo isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore3' element={<ExploreThree isSidebarOpen={isSidebarOpen} />} />
