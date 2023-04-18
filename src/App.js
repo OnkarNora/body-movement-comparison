@@ -13,6 +13,9 @@ import ShowGraph from "./pages/ShowGraph";
 import model_video from './model_videos/aniket_hands_up_4.mp4'
 
 // Chinmay was here
+//my aniket changes
+// my onkar changes
+// my changes khetal
 
 function App() {
 
@@ -25,10 +28,7 @@ function App() {
 			/>
 			<Routes>
 				<Route path='/contact' element={<Contact isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard/dashboard1' element={<DashboardsOne isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard/dashboard2' element={<DashboardTwo isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard/dashboard3' element={<DashboardThree isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard/dashboard4' element={<DashboardFour isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/dashboard' element={<DashboardsOne isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore1' element={<ExploreOne isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore2' element={<ExploreTwo isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore3' element={<ExploreThree isSidebarOpen={isSidebarOpen} />} />
