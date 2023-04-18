@@ -12,10 +12,10 @@ import Method from "./VideoSpecifics/Method";
 import ShowGraph from "./pages/ShowGraph";
 import model_video from './model_videos/aniket_hands_up_4.mp4'
 
-
+// Chinmay was here
 //my aniket changes
 // my onkar changes
-// my changes khetal 
+// my changes khetal
 
 function App() {
 
