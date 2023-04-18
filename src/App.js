@@ -11,6 +11,9 @@ import { ExploreFour, ExploreOne, ExploreThree, ExploreTwo } from "./pages/Explo
 import Method from "./VideoSpecifics/Method";
 import ShowGraph from "./pages/ShowGraph";
 import model_video from './model_videos/aniket_hands_up_4.mp4'
+
+// Chinmay was here
+
 function App() {
 
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
