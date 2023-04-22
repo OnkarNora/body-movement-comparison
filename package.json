@@ -11,6 +11,7 @@
     "antd": "^5.1.4",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.10.4",
+    "carousel-react-rcdev": "^0.0.5",
     "chart.js": "^4.2.1",
     "dynamic-time-warping": "^1.0.0",
     "dynamic-time-warping-2": "^1.1.2",
