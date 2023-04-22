@@ -1,8 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React,{ useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
+import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Home = ({isSidebarOpen}) => {
+
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+
+	useEffect(() => {
+		if (!user) {
+		  navigate('/login');
+		}
+			
+	}, [user, loading]);
+
   return (
     <div className={isSidebarOpen ? "home mt-5 left-marging":"home mt-5"}>
       <Container>
