@@ -32,3 +32,8 @@
   .links{
     text-decoration: none;
   }
+
+  .videos-wrapper {
+    display: flex;
+    justify-content: space-around;
+  }

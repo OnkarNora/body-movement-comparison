@@ -16,15 +16,15 @@ function UploadVideo({ model_video }) {
     const [scoreData, setScoreData] = useState([]);
     const [source, setSource] = useState();
     const [compared, setCompared] = useState(false);
-    const [showAnalysis, setShowAnalysis] = useState(true);
+    const [showAnalysis, setShowAnalysis] = useState(false);
     const inputRef = React.useRef();
 
     const frameRate = 24;
     const nextFrame = 1 / frameRate
 
     const defaultProps = {
-        videoWidth: 700,
-        videoHeight: 700,
+        videoWidth: window.innerWidth*0.20,
+        videoHeight: window.innerHeight*0.70,
         flipHorizontal: false,
         algorithm: 'single-pose',
         showVideo: true,
@@ -46,7 +46,6 @@ function UploadVideo({ model_video }) {
     const canvas2Ref = useRef(null);
 
     useEffect(() => {
-        // console.log("useEffect seems to be running")
         if (!model_video) {
             navigate('/explore/explore1')
         }
@@ -67,7 +66,6 @@ function UploadVideo({ model_video }) {
                 });
 
                 // Get the video blob from the response
-                console.log("this is response : ",response.blob())
                 const videoBlob = await response.blob();
 
                 // Create a blob URL from the video blob
@@ -89,10 +87,6 @@ function UploadVideo({ model_video }) {
         video.src = model_video
 
         // fetchVideo();
-
-
-        // video.crossOrigin = 'Anonymous';
-
     }, [])
 
 
@@ -109,7 +103,6 @@ function UploadVideo({ model_video }) {
     };
 
     async function showSkeleton(video, canvas, Data) {
-        // console.log("input data seeems : ",inputData)
 
         const canvasContext = canvas.getContext('2d')
         const {
@@ -130,7 +123,6 @@ function UploadVideo({ model_video }) {
         for (let pose in Data) {
 
             canvasContext.clearRect(0, 0, videoWidth, videoHeight)
-            console.log(video.currentTime)
             if (showVideo) {
                 canvasContext.save()
                 canvasContext.scale(-1, 1)
@@ -138,9 +130,6 @@ function UploadVideo({ model_video }) {
                 canvasContext.drawImage(video, 0, 0, videoWidth, videoHeight)
                 canvasContext.restore()
             }
-
-
-
 
             if (showPoints) {
                 drawKeyPoints(
@@ -151,6 +140,7 @@ function UploadVideo({ model_video }) {
                 )
             }
             if (showSkeleton) {
+                // console.log("This is being called : ",Data[pose].keypoints)
                 drawSkeleton(
                     Data[pose].keypoints,
                     minPartConfidence,
@@ -171,8 +161,6 @@ function UploadVideo({ model_video }) {
         await new Promise(resolve => setTimeout(resolve, nextFrame * 1000));
 
     }
-
-
 
     return (
         <div>
@@ -195,20 +183,20 @@ function UploadVideo({ model_video }) {
                     style={{ display: 'none' }}
                 />
                 {!source && <div className='text-center'> <button type='button' className='btn btn-secondary mt-2' onClick={handleChoose}>Choose</button></div>}
-                {source && (
-                    <video
-                        id='video'
-                        width={defaultProps.videoWidth}
-                        height={defaultProps.videoHeight}
-                        src={source}
-                        ref={videoRef}
-                    />
-                )}
-                <canvas style={{ margin: '10px' }} className="webcam" ref={canvasRef} />
+                <div className='videos-wrapper'>
+                    {
+                        source && 
+                        <div className='input-video-wrapper'>
+                            <video id='video' src={source} width={defaultProps.videoWidth} height={defaultProps.videoHeight} ref={videoRef}/>
+                            <canvas  className="webcam" ref={canvasRef} />
+                        </div>
+                    }
 
-
-                <video crossOrigin='anonymous' style={{ margin: '10px' }} id="videoNoShow" playsInline ref={video2Ref} />
-                <canvas style={{ margin: '10px' }} className="webcam" ref={canvas2Ref} />
+                    <div className='model-video-wrapper'>
+                        <video crossOrigin='anonymous' id="videoNoShow" width={defaultProps.videoWidth} height={defaultProps.videoHeight} playsInline ref={video2Ref} />
+                        <canvas  className="webcam" ref={canvas2Ref} />
+                    </div>
+                </div>
 
             </div>
 

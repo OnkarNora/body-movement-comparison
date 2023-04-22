@@ -30,6 +30,7 @@ async function getKeyPoints(imageElement,setData){
         no_of_frames++;
         // now video has seeked and current frames will show
         // at the time as we expect
+        // console.log("This is pased : ", video, imageScaleFactor, flipHorizontal, outputStride, maxPoseDetections)
         const pose = await net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride, maxPoseDetections);
         console.log(pose)
         poses_detailed.push(pose)
