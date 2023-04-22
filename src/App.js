@@ -11,7 +11,6 @@ import { AddExercisesOne, AddExercisesTwo } from "./pages/Add_exercise";
 import { ExploreFour, ExploreOne, ExploreThree, ExploreTwo } from "./pages/Explore";
 import Method from "./VideoSpecifics/Method";
 import ShowGraph from "./pages/ShowGraph";
-import model_video from './model_videos/aniket_hands_up_4.mp4'
 import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import LoadingScreen from './components/LoadingScreen';
@@ -22,8 +21,6 @@ function App() {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const [loader, setLoader] = useState(false);
 	const [modalVideo, setModalVideo] = useState(null);
-
-	console.log("This is being called : ", process.env.REACT_APP_API_KEY);
 
 	return (
 		<Router>
@@ -53,7 +50,5 @@ function App() {
 		</Router>
 	);
 }
-
-// <Method model_video={model_video} />
 
 export default App;

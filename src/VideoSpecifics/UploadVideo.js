@@ -19,10 +19,8 @@ function UploadVideo({ model_video }) {
     const [showAnalysis, setShowAnalysis] = useState(true);
     const inputRef = React.useRef();
 
-    let current_time = 0;
     const frameRate = 24;
     const nextFrame = 1 / frameRate
-    let no_of_frames = 0;
 
     const defaultProps = {
         videoWidth: 700,
@@ -49,48 +47,55 @@ function UploadVideo({ model_video }) {
 
     useEffect(() => {
         // console.log("useEffect seems to be running")
-        if(!model_video){
+        if (!model_video) {
             navigate('/explore/explore1')
         }
 
         const fetchVideo = async () => {
             try {
-              // Set up the URL to the video file in Firebase Storage
-              const videoUrl = model_video;
-      
-              // Set up the headers for the request
-              const headers = {
-                // Add your custom headers here
-                'Access-Control-Allow-Origin': '*',
-              };
-      
-              // Fetch the video with headers
-              const response = await fetch(videoUrl, { headers });
-      
-              // Get the video blob from the response
-              const videoBlob = await response.blob();
-      
-              // Create a blob URL from the video blob
-              const videoBlobUrl = URL.createObjectURL(videoBlob);
-      
-              // Set the video URL in the state
-              const video = video2Ref.current
-              video.width = defaultProps.videoWidth
-              video.height = defaultProps.videoHeight
-              video.src = videoBlobUrl
-            } catch (error) {
-              console.error(error);
-            }
-          };
-      
-          fetchVideo();
+                // Set up the URL to the video file in Firebase Storage
+                const videoUrl = model_video;
 
-        
+                // Fetch the video with headers
+                const response = await fetch(videoUrl, {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'video/mp4',
+                        'Sec-Fetch-Dest': 'video',
+                        'range': 'bytes=0-',
+                     },
+                });
+
+                // Get the video blob from the response
+                console.log("this is response : ",response.blob())
+                const videoBlob = await response.blob();
+
+                // Create a blob URL from the video blob
+                const videoBlobUrl = URL.createObjectURL(videoBlob);
+
+                // Set the video URL in the state
+                const video = video2Ref.current
+                video.width = defaultProps.videoWidth
+                video.height = defaultProps.videoHeight
+                video.src = videoBlobUrl
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const video = video2Ref.current
+        video.width = defaultProps.videoWidth
+        video.height = defaultProps.videoHeight
+        video.src = model_video
+
+        // fetchVideo();
+
+
         // video.crossOrigin = 'Anonymous';
 
     }, [])
 
-    
+
 
     const handleChoose = (event) => {
         inputRef.current.click();
@@ -100,10 +105,10 @@ function UploadVideo({ model_video }) {
         const file = event.target.files[0];
         const url = URL.createObjectURL(file);
         setSource(url);
-        
+
     };
 
-    async function showSkeleton(video,canvas,Data){
+    async function showSkeleton(video, canvas, Data) {
         // console.log("input data seeems : ",inputData)
 
         const canvasContext = canvas.getContext('2d')
@@ -122,8 +127,8 @@ function UploadVideo({ model_video }) {
         canvas.width = videoWidth
         canvas.height = videoHeight
         canvasContext.clearRect(0, 0, videoWidth, videoHeight)
-        for (let pose in Data){
-            
+        for (let pose in Data) {
+
             canvasContext.clearRect(0, 0, videoWidth, videoHeight)
             console.log(video.currentTime)
             if (showVideo) {
@@ -134,9 +139,9 @@ function UploadVideo({ model_video }) {
                 canvasContext.restore()
             }
 
-            
-                
-            
+
+
+
             if (showPoints) {
                 drawKeyPoints(
                     Data[pose].keypoints,
@@ -154,57 +159,57 @@ function UploadVideo({ model_video }) {
                     canvasContext
                 )
             }
-            
+
             await wait();
             video.currentTime += nextFrame
-            
+
         }
         video.currentTime = 0
     }
 
     async function wait() {
-        await new Promise(resolve => setTimeout(resolve, nextFrame*1000));
+        await new Promise(resolve => setTimeout(resolve, nextFrame * 1000));
 
-      }
-      
-      
+    }
+
+
 
     return (
         <div>
             <div className='text-center'>
-                {!compared && source && (<button type='button' className='btn btn-info m-3' onClick={async(event) => { event.target.setAttribute('disabled','ture');await compare(videoRef.current, video2Ref.current, setinputData, setmodelData, setScoreData); setCompared(true); }}>Compare</button>)}
-                {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(videoRef.current,canvasRef.current,inputData) }}>Show Skeleton input video</button>)}
-                {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(video2Ref.current,canvas2Ref.current,modelData) }}>Show Skeleton model video</button>)}
+                {!compared && source && (<button type='button' className='btn btn-info m-3' onClick={async (event) => { event.target.setAttribute('disabled', 'ture'); await compare(videoRef.current, video2Ref.current, setinputData, setmodelData, setScoreData); setCompared(true); }}>Compare</button>)}
+                {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(videoRef.current, canvasRef.current, inputData) }}>Show Skeleton input video</button>)}
+                {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(video2Ref.current, canvas2Ref.current, modelData) }}>Show Skeleton model video</button>)}
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { setShowAnalysis(true) }}>Show Analysis</button>)}
                 {/* <button onClick={() => { setStatus(false) }}>Stop</button> */}
             </div>
             <div>
-                
-                    <input
-                        ref={inputRef}
-                        className="VideoInput_input"
-                        type="file"
-                        onChange={handleFileChange}
-                        accept=".mov,.mp4"
-                        id="test"
-                        style={{display:'none'}}
+
+                <input
+                    ref={inputRef}
+                    className="VideoInput_input"
+                    type="file"
+                    onChange={handleFileChange}
+                    accept=".mov,.mp4"
+                    id="test"
+                    style={{ display: 'none' }}
+                />
+                {!source && <div className='text-center'> <button type='button' className='btn btn-secondary mt-2' onClick={handleChoose}>Choose</button></div>}
+                {source && (
+                    <video
+                        id='video'
+                        width={defaultProps.videoWidth}
+                        height={defaultProps.videoHeight}
+                        src={source}
+                        ref={videoRef}
                     />
-                    {!source && <div className='text-center'> <button type='button' className='btn btn-secondary mt-2' onClick={handleChoose}>Choose</button></div>}
-                    {source && (
-                        <video
-                            id='video'
-                            width={defaultProps.videoWidth}
-                            height={defaultProps.videoHeight}
-                            src={source}
-                            ref={videoRef}
-                        />
-                    )}
-                    <canvas style={{ margin: '10px' }} className="webcam" ref={canvasRef} />
-                
-                
-                <video crossOrigin='anonymous' controls style={{ margin: '10px' }} id="videoNoShow" playsInline ref={video2Ref}  />
+                )}
+                <canvas style={{ margin: '10px' }} className="webcam" ref={canvasRef} />
+
+
+                <video crossOrigin='anonymous' style={{ margin: '10px' }} id="videoNoShow" playsInline ref={video2Ref} />
                 <canvas style={{ margin: '10px' }} className="webcam" ref={canvas2Ref} />
-                
+
             </div>
 
             {showAnalysis ? <Analysis input_data={scoreData} /> : null}
