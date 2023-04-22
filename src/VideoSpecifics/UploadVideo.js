@@ -4,9 +4,11 @@ import React, { Component, useEffect, useRef, useState } from 'react'
 import * as posenet from '@tensorflow-models/posenet'
 import compare from './posenet';
 import Analysis from '../pages/Analysis';
+import { useNavigate } from 'react-router-dom';
 
 function UploadVideo({ model_video }) {
 
+    const navigate = useNavigate();
     const [laoding, setLoading] = useState(true);
     const [status, setStatus] = useState(false);
     const [inputData, setinputData] = useState([]);
@@ -47,12 +49,44 @@ function UploadVideo({ model_video }) {
 
     useEffect(() => {
         // console.log("useEffect seems to be running")
+        if(!model_video){
+            navigate('/explore/explore1')
+        }
 
-        const video = video2Ref.current
-        video.width = defaultProps.videoWidth
-        video.height = defaultProps.videoHeight
-        video.src = model_video
+        const fetchVideo = async () => {
+            try {
+              // Set up the URL to the video file in Firebase Storage
+              const videoUrl = model_video;
+      
+              // Set up the headers for the request
+              const headers = {
+                // Add your custom headers here
+                'Access-Control-Allow-Origin': '*',
+              };
+      
+              // Fetch the video with headers
+              const response = await fetch(videoUrl, { headers });
+      
+              // Get the video blob from the response
+              const videoBlob = await response.blob();
+      
+              // Create a blob URL from the video blob
+              const videoBlobUrl = URL.createObjectURL(videoBlob);
+      
+              // Set the video URL in the state
+              const video = video2Ref.current
+              video.width = defaultProps.videoWidth
+              video.height = defaultProps.videoHeight
+              video.src = videoBlobUrl
+            } catch (error) {
+              console.error(error);
+            }
+          };
+      
+          fetchVideo();
+
         
+        // video.crossOrigin = 'Anonymous';
 
     }, [])
 
@@ -168,7 +202,7 @@ function UploadVideo({ model_video }) {
                     <canvas style={{ margin: '10px' }} className="webcam" ref={canvasRef} />
                 
                 
-                <video style={{ margin: '10px' }} id="videoNoShow" playsInline ref={video2Ref} />
+                <video crossOrigin='anonymous' controls style={{ margin: '10px' }} id="videoNoShow" playsInline ref={video2Ref}  />
                 <canvas style={{ margin: '10px' }} className="webcam" ref={canvas2Ref} />
                 
             </div>
