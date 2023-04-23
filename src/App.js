@@ -36,9 +36,9 @@ function App() {
 				<Route path='/contact' element={<Contact isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/dashboard' element={<DashboardsOne isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore1' element={<ExploreOne setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/explore/explore2' element={<ExploreTwo isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/explore/explore3' element={<ExploreThree isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/explore/explore4' element={<ExploreFour isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/explore/explore2' element={<ExploreTwo setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/explore/explore3' element={<ExploreThree setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/explore/explore4' element={<ExploreFour setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/contribute/contribute1' element={<ContributesOne isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/contribute/contribute2' element={<ContributesTwo isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/addexercise/addexercise1' element={<AddExercisesOne setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />

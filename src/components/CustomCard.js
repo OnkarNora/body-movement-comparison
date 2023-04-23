@@ -17,8 +17,8 @@ function CustomCard({ img, title, description, setModalVideo, vid }) {
     return (
         <Card
             hoverable
-            style={{ width: 240 }}
-            cover={<img alt="example" src={img} />}
+            style={{ width: 240}}
+            cover={<img alt="example" src={img} style={{width: 240,height: 240}} />}
             onClick={onClickCard}
         >
             <Meta title={title} description={description} />
