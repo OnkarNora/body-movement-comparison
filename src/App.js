@@ -42,7 +42,7 @@ function App() {
 				<Route path='/contribute/contribute1' element={<ContributesOne isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/contribute/contribute2' element={<ContributesTwo isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/addexercise/addexercise1' element={<AddExercisesOne setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/addexercise/addexercise2' element={<AddExercisesTwo isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/addexercise/addexercise2' element={<AddExercisesTwo setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/process/video' element={<Method isSidebarOpen={isSidebarOpen} model_video={modalVideo} />} />
 				<Route path='/process/showgraph' element={<ShowGraph isSidebarOpen={isSidebarOpen} />} />
 				<Route exact path='/' element={<Home isSidebarOpen={isSidebarOpen} />} />

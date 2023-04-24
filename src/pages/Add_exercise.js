@@ -41,13 +41,13 @@ export const AddExercisesOne = ({setLoader}) => {
 	return (
 		<div className="position-absolute top-50 start-50 translate-middle mt-5" >
 			{
-				showAlert ? <div className="alert alert-success">Exercie Added Successfully</div> : null
+				showAlert ? <div className="alert alert-success">Exercise Added Successfully</div> : null
 			}
-			<h1 style={{ color: '#383838', textAlign: "center" }}>Add Exercie details</h1>
+			<h1 style={{ color: '#383838', textAlign: "center" }}>Add Exercise details</h1>
 			<form onSubmit={AddVideo}>
 				<div className="row justify-content-center align-items-center">
 					<div className="form-group col-md-12 m-3">
-						<label htmlFor="inputEmail4">Name of Exercie</label>
+						<label htmlFor="inputEmail4">Name of Exercise</label>
 						<input type="text" value={title} className="form-control" placeholder="Push Up" onChange={(e)=>{setTitle(e.target.value)}}></input>
 					</div>
 					<div className="form-group col-md-12 m-3">
@@ -73,10 +73,69 @@ export const AddExercisesOne = ({setLoader}) => {
 	);
 };
 
-export const AddExercisesTwo = () => {
+export const AddExercisesTwo = ({setLoader,isSidebarOpen}) => {
+	// const [videoFile, setVideoFile] = useState(null);
+	// const [thumbnailFile, setThumbnailFile] = useState(null);
+	const [title, setTitle] = useState('');
+	const [description, setDescription] = useState('');
+	const [reason, setReason] = useState('');
+	const [showAlert, setShowAlert] = useState(false);
+
+	const AddVideo = (e) => {
+		e.preventDefault();
+		setLoader(true);
+		// UploadVideoToStorage(videoFile, thumbnailFile, {title:title,description:description}).then(()=>{
+		UploadVideoToStorage({title:title,description:description,reason:reason}).then(()=>{
+			setTitle('');
+			setReason('');
+			setDescription('');
+			// setVideoFile(null);
+			// setThumbnailFile(null);
+			setLoader(false);
+			setShowAlert(true);
+			setTimeout(()=>{setShowAlert(false)}, 3000);
+		}).catch(()=> {
+			alert('Error in uploading')
+			setTitle('');
+			setReason('');
+			setDescription('');
+			// setVideoFile(null);
+			// setThumbnailFile(null);
+			setLoader(false);
+		});
+	}
 	return (
-		<div className="Add_exercise">
-			<h1>Recommended videos</h1>
+		<div className={isSidebarOpen ? "dashboards left-marging":"dashboards"}>
+			{/* <h1>Recommended videos</h1> */}
+			<div className="position-absolute top-50 start-50 translate-middle mt-5" >
+			{
+				showAlert ? <div className="alert alert-success">We will look at your Recommendation soon ..Thanks for your Recommendation</div> : null
+			}
+			<h1 style={{ color: '#383838', textAlign: "center" }}>Recommend us to improve your experience</h1>
+			<form onSubmit={AddVideo}>
+				<div className="row justify-content-center align-items-center">
+					<div className="form-group col-md-12 m-3">
+						<label htmlFor="inputEmail4">Name of Exercise</label>
+						<input type="text" value={title} className="form-control" placeholder="Push Up" onChange={(e)=>{setTitle(e.target.value)}}></input>
+					</div>
+					<div className="form-group col-md-12 m-3">
+						<label htmlFor="inputEmail4">What needs to improve</label>
+						<input type="text" value={description} className="form-control" id="inputEmail4" placeholder="Recommendation" onChange={(e)=>{setDescription(e.target.value)}}></input>
+					</div> 
+					<div className="form-group col-md-12 m-3">
+						<label htmlFor="inputEmail4">Reason</label>
+						<input type="text" value={reason} className="form-control" id="inputEmail4" placeholder="reason" onChange={(e)=>{setReason(e.target.value)}}></input>
+					</div> 
+
+				</div>
+				<center>
+					<button type="submit" className="submit btn btn-primary " onClick={AddVideo} >
+						Submit<i className="icon-angle-right" ></i>
+					</button>
+				</center>
+			</form>
+		</div>
+			
 		</div>
 	);
 };

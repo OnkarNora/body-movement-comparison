@@ -36,7 +36,7 @@ const Contact = () => {
 
   return (
     <div className="contact-form-container">
-      <h1 style={{color:'orange'}}>Contact Us</h1>
+      <h1 style={{color:'#383838'}}>Contact Us</h1>
       <form onSubmit={handleFormSubmit}>
         <table>
           <tbody>

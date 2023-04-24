@@ -14,7 +14,7 @@ return (
 export const DashboardsOne = ({isSidebarOpen}) => {
 return (
 	<div className={isSidebarOpen ? "dashboards left-marging":"dashboards"}>
-	<h1>Ongoing exercise</h1>
+	{/* <h1>Ongoing exercise</h1>
 	<div>
 	<Carousel>
 		{videos.map((val,idx)=>{return (<CustomCard img={val.img} title={val.title} description={val.description} id={idx} />)})}
@@ -28,30 +28,12 @@ return (
 		{videos.map((val,idx)=>{return (<CustomCard img={val.img} title={val.title} description={val.description} id={idx} />)})}
 		{videos.map((val,idx)=>{return (<CustomCard img={val.img} title={val.title} description={val.description} id={idx} />)})}
     </Carousel>
-	</div>
+	</div> */}
+
+	
 
 	</div>
 );
 };
 
-export const DashboardTwo = () => {
-return (
-	<div className="Dashboards">
-	<h1>Upcoming exercise</h1>
-	</div>
-);
-};
-export const DashboardThree = () => {
-return (
-	<div className="Dashboards">
-	<h1>Past exercise</h1>
-	</div>
-);
-};
-export const DashboardFour = () => {
-return (
-	<div className="Dashboards">
-	<h1>Recommended exercise</h1>
-	</div>
-);
-};
+
