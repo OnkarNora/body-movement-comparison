@@ -73,7 +73,7 @@ export const AddExercisesOne = ({setLoader}) => {
 	);
 };
 
-export const AddExercisesTwo = ({setLoader,isSidebarOpen}) => {
+export const AddExercisesTwo = ({setLoader}) => {
 	// const [videoFile, setVideoFile] = useState(null);
 	// const [thumbnailFile, setThumbnailFile] = useState(null);
 	const [title, setTitle] = useState('');
@@ -105,7 +105,7 @@ export const AddExercisesTwo = ({setLoader,isSidebarOpen}) => {
 		});
 	}
 	return (
-		<div className={isSidebarOpen ? "dashboards left-marging":"dashboards"}>
+		<div >
 			{/* <h1>Recommended videos</h1> */}
 			<div className="position-absolute top-50 start-50 translate-middle mt-5" >
 			{

@@ -39,10 +39,10 @@ function App() {
 				<Route path='/explore/explore2' element={<ExploreTwo setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore3' element={<ExploreThree setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore4' element={<ExploreFour setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/contribute/contribute1' element={<ContributesOne isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/contribute/contribute2' element={<ContributesTwo isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/contribute/contribute1' element={<ContributesOne setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/contribute/contribute2' element={<ContributesTwo setLoader={setLoader} />} />
 				<Route path='/addexercise/addexercise1' element={<AddExercisesOne setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/addexercise/addexercise2' element={<AddExercisesTwo setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/addexercise/addexercise2' element={<AddExercisesTwo setLoader={setLoader} />} />
 				<Route path='/process/video' element={<Method isSidebarOpen={isSidebarOpen} model_video={modalVideo} />} />
 				<Route path='/process/showgraph' element={<ShowGraph isSidebarOpen={isSidebarOpen} />} />
 				<Route exact path='/' element={<Home isSidebarOpen={isSidebarOpen} />} />
