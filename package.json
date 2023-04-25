@@ -16,6 +16,7 @@
     "dynamic-time-warping": "^1.0.0",
     "dynamic-time-warping-2": "^1.1.2",
     "firebase": "^9.19.1",
+    "mdb-react-ui-kit": "^6.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-chartjs-2": "^5.2.0",
