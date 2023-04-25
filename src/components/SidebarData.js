@@ -29,23 +29,18 @@ export const SidebarData = [
 
 	subNav: [
 	{
-		title: "Choose-specific-body-exercise",
+		title: "All exercise",
 		path: "/explore/explore1",
 		icon: <IoIcons.IoIosPaper />,
 	},
 	{
-		title: "new added",
+		title: "Newly added",
 		path: "/explore/explore2",
 		icon: <IoIcons.IoIosPaper />,
 	},
 	{
 		title: "Package",
 		path: "/explore/explore3",
-		icon: <IoIcons.IoIosPaper />,
-	},
-	{
-		title: "all exercise",
-		path: "/explore/explore4",
 		icon: <IoIcons.IoIosPaper />,
 	},
 	],

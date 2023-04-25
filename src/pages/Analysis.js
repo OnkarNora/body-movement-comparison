@@ -1,7 +1,7 @@
 import React from "react";
 import {  Space, Table, Tag  } from 'antd';
 import { Line } from 'react-chartjs-2';
-const Analysis = ({input_data}) => {
+const Analysis = ({input_data, modalPoints}) => {
 	const TEMPDATA = {
 		datasets: [
 		  {
@@ -75,7 +75,16 @@ const Analysis = ({input_data}) => {
 		  render: (_, { tags }) => (
 			<>
 			  {tags.map((tag) => {
-				let color = 'green';
+				let color;
+				if (tag === 'nice'){
+					color = 'green';
+				}
+				if (tag === 'average'){
+					color = 'yellow';
+				}
+				if (tag === 'poor'){
+					color = 'red';
+				}
 				return (
 				  <Tag color={color} key={tag}>
 					{tag.toUpperCase()}
@@ -86,14 +95,14 @@ const Analysis = ({input_data}) => {
 		  ),
 		},
 	  ];
-	  const bodyParts = ["nose","leftEye","rightEye","leftEar","rightEar","leftShoulder","rightShoulder","leftElbow","rightElbow","leftWrist","rightWrist","leftHip","rightHip","leftKnee","rightKnee","leftAnkle","rightAnkle"]
+	  const bodyParts = modalPoints ? modalPoints : ["nose","leftEye","rightEye","leftEar","rightEar","leftShoulder","rightShoulder","leftElbow","rightElbow","leftWrist","rightWrist","leftHip","rightHip","leftKnee","rightKnee","leftAnkle","rightAnkle"]
 	  const data = [];
 	  for (let i in bodyParts){
 		data.push({
 			key: i,
 			name: bodyParts[i],
 			score: input_data[i],
-			tags: ['nice'],
+			tags: input_data[i]>75 ? ['nice'] : input_data[i]>50 ? ['average'] : ['poor'],
 		  })
 	  }
 	  console.log("input data; :",input_data)
@@ -101,11 +110,19 @@ const Analysis = ({input_data}) => {
 
 return (
 	<div className='text-center'>
-	<h1>Analysis Page</h1>
 	{/* <p>{input_data}</p> */}
 	<Table columns={columns} dataSource={data} />
-	<Line data={TEMPDATA} options={OPTIONS}/>
-	<h4>Total Score : {input_data[17]}</h4>
+	{/* <Line data={TEMPDATA} options={OPTIONS}/> */}
+	<h4>
+		Total Score : {input_data[input_data.length - 1]}
+		<Tag 
+			color={input_data[input_data.length - 1]>75 ? 'green' : input_data[input_data.length - 1]>50 ? 'yellow' : 'red'}
+			className="mx-3
+			"
+		>		
+			{input_data[input_data.length - 1]>75 ? 'Nice' : input_data[input_data.length - 1]>50 ? 'Average' : 'Poor'} 
+		</Tag>
+	</h4>
 	</div>
 );
 };

@@ -102,7 +102,8 @@ const UploadVideoToStorage = async (videoFile, imageFile, metadata) => {
                         videoURL: videoURL,
                         thumbnailURL: thumbnailURL,
                         title: metadata.title,
-                        description: metadata.description
+                        description: metadata.description,
+                        impPoints: metadata.ImpPoints,
                     }).then(() => {
                         console.log('Video and thumbnail URLs stored in Firestore!');
                         res("Done!")
@@ -131,8 +132,7 @@ const fetchPosesData = async (user) => {
         const doc = await getDocs(q);
         let data = []
         // console.log(doc.docs)
-        doc.docs.map((item)=>{
-            // console.log(item.data)
+        doc.docs.map((item) => {
             let d = item.data()
             data.push(d)
             

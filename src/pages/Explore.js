@@ -1,54 +1,134 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import CustomCard from "../components/CustomCard";
-import { videos } from '../VideoSpecifics/videos';
 import { fetchPosesData } from "../firebase";
+import { CaretRightOutlined, CaretLeftOutlined } from '@ant-design/icons'
 
-import Carousel from 'carousel-react-rcdev'
-export const ExploreOne = ({ isSidebarOpen, setLoader, setModalVideo }) => {
+export const ExploreOne = ({ isSidebarOpen, setLoader, setModalVideo, setModalPoints }) => {
 
 	const [posesData, setPosesData] = useState([]);
+	const cardsContainerRef = useRef(null);
+	const [translateValue, setTranslateValue] = useState(0);
+	const [isPrevButtonDisabled, setIsPrevButtonDisabled] = useState('disb');
+	const [isNextButtonDisabled, setIsNextButtonDisabled] = useState('');
+	
+	const handlePrevClick = () => {
+		setTranslateValue(translateValue + 50);
+	};
+
+	const handleNextClick = () => {
+		console.log("cardsContainerRef",cardsContainerRef)
+		setTranslateValue(translateValue - 50);
+	};
+
+	useEffect(() => {
+		if (translateValue === 0){
+			setIsPrevButtonDisabled('disb');
+		} else {
+			setIsPrevButtonDisabled('');
+		}
+		if (cardsContainerRef?.current.clientWidth + (-(translateValue)) >=  (240  * posesData.length) ){
+			setIsNextButtonDisabled('disb');
+		} else {
+			setIsNextButtonDisabled('');	
+		}
+	}, [translateValue, posesData]);
 
 	useEffect(() => {
 		setLoader(true);
 		fetchPosesData().then((data) => { setPosesData(data); setLoader(false) })
 	}, []);
 
-	useEffect(() => {
-		console.log(posesData)
-	}, [posesData]);
-
 	return (
 		<div className={isSidebarOpen ? "explore left-marging" : "explore"}>
-			{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
+			<h3>Explore All Exercises here</h3>
+			<button className={"prev-btn " + isPrevButtonDisabled} onClick={handlePrevClick}><CaretLeftOutlined  /></button>
+			<div className="card-container" style={{ transform: `translateX(${translateValue}%)` }} ref={cardsContainerRef}>
+				{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} setModalPoints={setModalPoints} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} impPoints={val.impPoints} id={idx} />) })}
+			</div>
+			<button className={"next-btn " + isNextButtonDisabled}  onClick={handleNextClick} ><CaretRightOutlined  /></button>
 		</div>
 	);
 };
 
-export const ExploreTwo = ({ isSidebarOpen, setLoader, setModalVideo }) => {
+export const ExploreTwo = ({ isSidebarOpen, setLoader, setModalVideo, setModalPoints }) => {
+
 	const [posesData, setPosesData] = useState([]);
+	const cardsContainerRef = useRef(null);
+	const [translateValue, setTranslateValue] = useState(0);
+	const [isPrevButtonDisabled, setIsPrevButtonDisabled] = useState('disb');
+	const [isNextButtonDisabled, setIsNextButtonDisabled] = useState('');
+	
+	const handlePrevClick = () => {
+		setTranslateValue(translateValue + 50);
+	};
+
+	const handleNextClick = () => {
+		console.log("cardsContainerRef",cardsContainerRef)
+		setTranslateValue(translateValue - 50);
+	};
+
+	useEffect(() => {
+		if (translateValue === 0){
+			setIsPrevButtonDisabled('disb');
+		} else {
+			setIsPrevButtonDisabled('');
+		}
+		if (cardsContainerRef?.current.clientWidth + (-(translateValue)) >=  (240  * posesData.length) ){
+			setIsNextButtonDisabled('disb');
+		} else {
+			setIsNextButtonDisabled('');	
+		}
+	}, [translateValue, posesData]);
 
 	useEffect(() => {
 		setLoader(true);
 		fetchPosesData().then((data) => { setPosesData(data); setLoader(false) })
 	}, []);
 
-	useEffect(() => {
-		console.log(posesData)
-	}, [posesData]);
 
 	return (
 		<div className={isSidebarOpen ? "explore left-marging" : "explore"}>
-			<h1>New added videos</h1>
+			<h3>New added videos</h3>
 			<h3>Here you will see all latest exercises we added to our website</h3>
-			<Carousel>
-				{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-				{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-			</Carousel>
+			<div>
+				<button className={"prev-btn " + isPrevButtonDisabled} onClick={handlePrevClick}><CaretLeftOutlined  /></button>
+				<div className="card-container" style={{ transform: `translateX(${translateValue}%)` }} ref={cardsContainerRef}>
+					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} setModalPoints={setModalPoints} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} impPoints={val.impPoints} id={idx} />) })}
+				</div>
+				<button className={"next-btn " + isNextButtonDisabled}  onClick={handleNextClick} ><CaretRightOutlined  /></button>
+			</div>
 		</div>
 	);
 };
-export const ExploreThree = ({ isSidebarOpen, setLoader, setModalVideo }) => {
+export const ExploreThree = ({ isSidebarOpen, setLoader, setModalVideo, setModalPoints }) => {
+
 	const [posesData, setPosesData] = useState([]);
+	const cardsContainerRef = useRef(null);
+	const [translateValue, setTranslateValue] = useState(0);
+	const [isPrevButtonDisabled, setIsPrevButtonDisabled] = useState('disb');
+	const [isNextButtonDisabled, setIsNextButtonDisabled] = useState('');
+	
+	const handlePrevClick = () => {
+		setTranslateValue(translateValue + 50);
+	};
+
+	const handleNextClick = () => {
+		console.log("cardsContainerRef",cardsContainerRef)
+		setTranslateValue(translateValue - 50);
+	};
+
+	useEffect(() => {
+		if (translateValue === 0){
+			setIsPrevButtonDisabled('disb');
+		} else {
+			setIsPrevButtonDisabled('');
+		}
+		if (cardsContainerRef?.current.clientWidth + (-(translateValue)) >=  (240  * posesData.length) ){
+			setIsNextButtonDisabled('disb');
+		} else {
+			setIsNextButtonDisabled('');	
+		}
+	}, [translateValue, posesData]);
 
 	useEffect(() => {
 		setLoader(true);
@@ -61,52 +141,13 @@ export const ExploreThree = ({ isSidebarOpen, setLoader, setModalVideo }) => {
 
 	return (
 		<div className={isSidebarOpen ? "explore left-marging" : "explore"}>
-			<h1>This includes different exercise in one package explore any one and do combination of exercises together</h1>
+			<h3>This includes different exercise in one package <br/> explore any one and do combination of exercises together</h3>
 			<div>
-				<Carousel>
-					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-				</Carousel>
-			</div>
-		</div>
-	);
-};
-export const ExploreFour = ({ isSidebarOpen, setLoader, setModalVideo }) => {
-	const [posesData, setPosesData] = useState([]);
-
-	useEffect(() => {
-		setLoader(true);
-		fetchPosesData().then((data) => { setPosesData(data); setLoader(false) })
-	}, []);
-
-	useEffect(() => {
-		console.log(posesData)
-	}, [posesData]);
-
-	return (
-		<div className={isSidebarOpen ? "explore left-marging" : "explore"}>
-			<h1>All exercises</h1>
-			<h1>Ongoing exercise</h1>
-			<div>
-				<Carousel>
-					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-				</Carousel>
-			</div>
-
-			<h1>Upcoming exercise</h1>
-			<div>
-				<Carousel>
-					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-				</Carousel>
-			</div>
-			<h1>Past exercise</h1>
-			<div>
-				<Carousel>
-					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} id={idx} />) })}
-				</Carousel>
+				<button className={"prev-btn " + isPrevButtonDisabled} onClick={handlePrevClick}><CaretLeftOutlined  /></button>
+				<div className="card-container" style={{ transform: `translateX(${translateValue}%)` }} ref={cardsContainerRef}>
+					{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} setModalPoints={setModalPoints} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} impPoints={val.impPoints} id={idx} />) })}
+				</div>
+				<button className={"next-btn " + isNextButtonDisabled}  onClick={handleNextClick} ><CaretRightOutlined  /></button>
 			</div>
 		</div>
 	);

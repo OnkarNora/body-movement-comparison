@@ -4,7 +4,7 @@ import UploadVideo from './UploadVideo'
 import RecordVideo from './RecordVideo'
 import { useState } from 'react'
 
-function Method({model_video, isSidebarOpen}) {
+function Method({model_video, isSidebarOpen, modalPoints}) {
 
     const [step, setStep] = useState(1);
 
@@ -60,7 +60,7 @@ function Method({model_video, isSidebarOpen}) {
             )
         case 2:
             return (
-                <UploadVideo model_video={model_video} />
+                <UploadVideo model_video={model_video} modalPoints={modalPoints} />
             )
         case 3:
             return (

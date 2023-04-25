@@ -1,7 +1,4 @@
 import React from "react";
-import { videos } from "../VideoSpecifics/videos";
-import CustomCard from "../components/CustomCard";
-import Carousel from "carousel-react-rcdev";
 
 import {
   MDBCol,
@@ -21,15 +18,7 @@ import {
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
 
-export const Dashboards = () => {
-  return (
-    <div className="Dashboards">
-      <h1>Dashboards Page</h1>
-    </div>
-  );
-};
-
-export const DashboardsOne = ({ isSidebarOpen }) => {
+export const Dashboards = ({ isSidebarOpen }) => {
   return (
     <div className={isSidebarOpen ? "dashboards left-marging" : "dashboards"}>
       <section style={{ backgroundColor: "#eee" }}>

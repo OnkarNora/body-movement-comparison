@@ -3,11 +3,10 @@ import * as posenet from '@tensorflow-models/posenet'
 import DynamicTimeWarping from 'dynamic-time-warping'
 
 
-async function getKeyPoints(imageElement,setData){
+async function getKeyPoints(imageElement,setData, modalPointsToConsider){
     console.log("called",imageElement)
     var poses = [];
     var poses_detailed = []
-    let ans;
     // console.log(cv);
     const net = await posenet.load(tfjs);
     // {inputResolution: { width: 640, height: 480 },scale: 0.8,}
@@ -31,11 +30,23 @@ async function getKeyPoints(imageElement,setData){
         // now video has seeked and current frames will show
         // at the time as we expect
         // console.log("This is pased : ", video, imageScaleFactor, flipHorizontal, outputStride, maxPoseDetections)
-        const pose = await net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride, maxPoseDetections);
+        const Allpose = await net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride, maxPoseDetections);
+        let pose = {
+            score: Allpose.score,
+            keypoints: []
+        };
+        if (modalPointsToConsider){
+            pose.keypoints = Allpose.keypoints.filter((item) => {
+                return modalPointsToConsider.includes(item.part)
+            })
+        } else {
+            pose.keypoints = Allpose.keypoints
+        }
         console.log(pose)
-        poses_detailed.push(pose)
+        poses_detailed.push(Allpose)
         let arr = []
-        for (let j = 0;j<17;j++){
+        let keypointsLength = pose.keypoints.length
+        for (let j = 0;j<keypointsLength;j++){
             arr.push([pose.keypoints[j].position['x'],pose.keypoints[j].position['y']])
         }
         poses.push(arr)
@@ -51,7 +62,7 @@ async function getKeyPoints(imageElement,setData){
         else {
             console.log(no_of_frames)
             setData(poses_detailed)
-            resolve(analyseKeyPoints(poses))
+            resolve(analyseKeyPoints(poses, keypointsLength))
         //   video.load();
         }
       });
@@ -117,11 +128,10 @@ async function getKeyPoints(imageElement,setData){
     // return coords_new
 }
 
-function analyseKeyPoints(poses){
+function analyseKeyPoints(poses, keypointsLength){
     // console.log("poses : ",poses)
 
     // let roi_coords = bounding_box(coords_new);
-    let normalized_poses = []
     let new_coords = []
     for(let i in poses){
         let coords_new = poses[i]
@@ -134,7 +144,7 @@ function analyseKeyPoints(poses){
         new_coords.push(coords_new)
     }
     // console.log("normalized_poses : ",normalized_poses)
-    for (let i=0 ; i<17; i++){
+    for (let i=0 ; i<keypointsLength; i++){
         let input = []
         for (let j in new_coords){
             input.push(new_coords[j][i][0])
@@ -142,7 +152,6 @@ function analyseKeyPoints(poses){
         }
         input = normalize_array(input)
         let k = 0;
-        let normalizedarr = []
         for (let j in new_coords){
             new_coords[j][i][0] = input[k];
             k++;
@@ -202,19 +211,19 @@ function normalize_array(arr) {
   
   }
 
-async function compare(input_image,model_image, setinputData, setmodelData, setScoreData){
-
-    let input_points = await getKeyPoints(input_image,setinputData);
-    let model_points = await getKeyPoints(model_image,setmodelData);
+async function compare(input_image,model_image, setinputData, setmodelData, setScoreData, modalPointsToConsider){
+    let input_points = await getKeyPoints(input_image,setinputData, modalPointsToConsider);
+    let model_points = await getKeyPoints(model_image,setmodelData, modalPointsToConsider);
 
     // input_points.pop()
     // model_points.pop()
     // console.log("input points : ",input_points);
     // console.log("model points : ",model_points);
     // const distFunc = ( a, b )=>  (a-b)**2; // this is used in python but still its different (dont know the reason)
+    let keypointsLength = modalPointsToConsider ? modalPointsToConsider.length : 17;
     const distFunc = ( a, b )=>  Math.abs(a-b);
     let scores = [];
-    for (let i=0 ; i<17; i++){
+    for (let i=0 ; i<keypointsLength; i++){
         let input = []
         let model = []
         for (let j in input_points){
