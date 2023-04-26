@@ -1,15 +1,3 @@
-// import React from "react";
-
-// const Contact = () => {
-// return (
-// 	<div className="contact">
-// 	<p style={{color:"blue"}}>email - gymwithml@gmail.com</p>
-// 	</div>
-// );
-// };
-
-// export default Contact;
-
 import React, { useState } from "react";
 // import firebase from "firebase";
 import "./ContactForm.css";
@@ -72,15 +60,10 @@ const Contact = () => {
                 />
               </td>
             </tr>
-            <tr>
-              <td></td>
-              <td>
-                <button type="submit">Submit</button>
-              </td>
-            </tr>
           </tbody>
         </table>
       </form>
+                <button style={{textAlign:'center'}}type="submit">Submit</button>
     </div>
   );
 };

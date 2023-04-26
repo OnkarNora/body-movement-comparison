@@ -38,7 +38,7 @@ function App() {
 				<Route path='/login' element={<Login setLoader={setLoader} />} />
 				<Route path='/contact' element={<Contact isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/dashboard' element={<Dashboards isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/register' element={<Register isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/register' element={<Register setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore1' element={<ExploreOne setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore2' element={<ExploreTwo setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore3' element={<ExploreThree setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />

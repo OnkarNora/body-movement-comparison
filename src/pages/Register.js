@@ -1,68 +1,81 @@
+// import Logo from '../assets/logo.png'
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import {
-    auth,
-    registerUserWithEmailAndPassword,
-    signInWithGoogle,
-} from "../firebase";
-import "./Register.css";
-import logo from './images/Login_page.jpg'
+import { auth, registerUserWithEmailAndPassword } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import "../css/Register.css";
 
-function Register() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
-    const register = () => {
-        if (!name) alert("Please enter name");
-        registerUserWithEmailAndPassword(name, email, password);
-    };
-    useEffect(() => {
-        if (loading) return;
-        if (user) navigate("/");
-    }, [user, loading]);
-    return (
-        // <div className="register"style={{backgroundImage: "url(" + logo + ")",backgroundPosition: 'center',backgroundSize: 'cover',backgroundRepeat: 'no-repeat'}}>
-        <div className="register">
-            <div className="register__container">
-            <h2>Register</h2>
-                <input
-                    type="text"
-                    className="register__textBox"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Full Name"
-                />
-                <input
-                    type="text"
-                    className="register__textBox"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="E-mail Address"
-                />
-                <input
-                    type="password"
-                    className="register__textBox"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                />
-                <button className="register__btn" onClick={register}>
-                    Register
-                </button>
-                <button
-                    className="register__btn register__google"
-                    onClick={signInWithGoogle}
-                >
-                    Register with Google
-                </button>
-                <div>
-                    Already have an account? <Link to="/">Login</Link> now.
-                </div>
-            </div>
+function Register({setLoader}) {
+
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loading) {
+        setLoader(true);
+        return;
+    } else{
+      setLoader(false);
+    }
+    if (user) {
+      navigate('/');
+    }
+        
+}, [user, loading]);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setLoader(true);
+    registerUserWithEmailAndPassword(name,email, password).then(()=>{setLoader(false);});
+  }
+
+  return (
+    <div className='App'>
+      <form className="form" onSubmit={handleSubmit}>
+        <h1>Register Page</h1>
+        <div className="input-container">
+          <label className="label">Name: </label>
+          <input
+            type="text"
+            name="name"
+            className="input"
+            placeholder="Name"
+            value={name}
+            onChange={(e)=>{setName(e.target.value)}}
+          />
         </div>
-    );
+        <div className="input-container">
+          <label className="label">Email: </label>
+          <input
+            type="text"
+            name="email"
+            className="input"
+            placeholder="Email"
+            value={email}
+            onChange={(e)=>{setEmail(e.target.value)}}
+          />
+        </div>
+        <div className="input-container">
+          <label className="label">Password: </label>
+          <input
+            type="password"
+            name="password"
+            className="input"
+            placeholder="Password"
+            value={password}
+            onChange={(e)=>{setPassword(e.target.value)}}
+          />
+        </div>
+        <div>
+          <button type="submit" id="Register-btn">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  )
 }
-export default Register;
+
+export default Register
