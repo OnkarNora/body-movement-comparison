@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { Dashboards } from "./pages/Dashboards";
+// import { Register } from "./pages/Register";
 import Contact from "./pages/ContactUs";
 import Login from "./pages/Login";
 import { ContributesOne, ContributesTwo } from "./pages/Contribute";
@@ -14,6 +15,7 @@ import ShowGraph from "./pages/ShowGraph";
 import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import LoadingScreen from './components/LoadingScreen';
+import Register from './pages/Register';
 
 function App() {
 
@@ -36,6 +38,7 @@ function App() {
 				<Route path='/login' element={<Login setLoader={setLoader} />} />
 				<Route path='/contact' element={<Contact isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/dashboard' element={<Dashboards isSidebarOpen={isSidebarOpen} />} />
+				<Route path='/register' element={<Register isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore1' element={<ExploreOne setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore2' element={<ExploreTwo setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
 				<Route path='/explore/explore3' element={<ExploreThree setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />

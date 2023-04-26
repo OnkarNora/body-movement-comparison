@@ -19,6 +19,10 @@
     margin: 20px;
     transition: all .2s ease-in;
   }
+  .register {
+    margin: 20px;
+    transition: all .2s ease-in;
+  }
   .explore {
     overflow: hidden;
     position: relative;

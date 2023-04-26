@@ -65,9 +65,9 @@ function Login({setLoader}) {
           <a href="#" className="link forgotten-password">
             Forgot password?
           </a>
-          <a href="#" className="link forgotten-password">
+          <Link to="/register" className="link forgotten-password">
             Not registered?
-          </a>
+          </Link>
         </div>
         <div>
           <button type="submit" id="login-btn">
