@@ -40,7 +40,7 @@ export const ExploreOne = ({ isSidebarOpen, setLoader, setModalVideo, setModalPo
 
 	return (
 		<div className={isSidebarOpen ? "explore left-marging" : "explore"}>
-			<h3>Explore All Exercises here</h3>
+			<h3 className="all-exe">Explore All Exercises here</h3>
 			<button className={"prev-btn " + isPrevButtonDisabled} onClick={handlePrevClick}><CaretLeftOutlined  /></button>
 			<div className="card-container" style={{ transform: `translateX(${translateValue}%)` }} ref={cardsContainerRef}>
 				{posesData.map((val, idx) => { return (<CustomCard setModalVideo={setModalVideo} setModalPoints={setModalPoints} vid={val.videoURL} img={val.thumbnailURL} title={val.title} description={val.description} impPoints={val.impPoints} id={idx} />) })}
@@ -88,8 +88,8 @@ export const ExploreTwo = ({ isSidebarOpen, setLoader, setModalVideo, setModalPo
 
 	return (
 		<div className={isSidebarOpen ? "explore left-marging" : "explore"}>
-			<h3>New added videos</h3>
-			<h3>Here you will see all latest exercises we added to our website</h3>
+			<h3 className="all-exe">New added videos</h3>
+			<h3 className="all-exe">Here you will see all latest exercises we added to our website</h3>
 			<div>
 				<button className={"prev-btn " + isPrevButtonDisabled} onClick={handlePrevClick}><CaretLeftOutlined  /></button>
 				<div className="card-container" style={{ transform: `translateX(${translateValue}%)` }} ref={cardsContainerRef}>
@@ -141,7 +141,7 @@ export const ExploreThree = ({ isSidebarOpen, setLoader, setModalVideo, setModal
 
 	return (
 		<div className={isSidebarOpen ? "explore left-marging" : "explore"}>
-			<h3>This includes different exercise in one package <br/> explore any one and do combination of exercises together</h3>
+			<h3 className="all-exe">This includes different exercise in one package <br/> explore any one and do combination of exercises together</h3>
 			<div>
 				<button className={"prev-btn " + isPrevButtonDisabled} onClick={handlePrevClick}><CaretLeftOutlined  /></button>
 				<div className="card-container" style={{ transform: `translateX(${translateValue}%)` }} ref={cardsContainerRef}>

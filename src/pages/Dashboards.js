@@ -42,14 +42,13 @@ export const Dashboards = ({ isSidebarOpen }) => {
               <MDBCard className="mb-4">
                 <MDBCardBody className="text-center">
                   <MDBCardImage
-                    // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-					src="https://avatars.githubusercontent.com/u/68858889?v=4"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                     alt="avatar"
                     className="rounded-circle"
                     style={{ width: "150px" }}
                     fluid
                   />
-                  <p className="text-muted mb-1">Full Stack Developer</p>
+                  <p className="text-muted mb-1">Gym Enthusiast</p>
                   <p className="text-muted mb-4">Solapur, Maharashtra, India</p>
                   <div className="d-flex justify-content-center mb-2">
                     <MDBBtn>Follow</MDBBtn>
@@ -65,7 +64,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                   <MDBListGroup flush className="rounded-3">
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                       <MDBIcon fas icon="globe fa-lg text-warning" />
-                      <MDBCardText>https://mdbootstrap.com</MDBCardText>
+                      <MDBCardText className="all-exe" style={{textAlign:'center'}}>LAST 4 EXERCISES</MDBCardText>
                     </MDBListGroupItem>
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                       <MDBIcon
@@ -73,7 +72,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         icon="github fa-lg"
                         style={{ color: "#333333" }}
                       />
-                      <MDBCardText>mdbootstrap</MDBCardText>
+                      <MDBCardText>Push-Ups</MDBCardText>
                     </MDBListGroupItem>
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                       <MDBIcon
@@ -81,7 +80,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         icon="twitter fa-lg"
                         style={{ color: "#55acee" }}
                       />
-                      <MDBCardText>@mdbootstrap</MDBCardText>
+                      <MDBCardText>Pull-Ups</MDBCardText>
                     </MDBListGroupItem>
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                       <MDBIcon
@@ -89,7 +88,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         icon="instagram fa-lg"
                         style={{ color: "#ac2bac" }}
                       />
-                      <MDBCardText>mdbootstrap</MDBCardText>
+                      <MDBCardText>Side Raises</MDBCardText>
                     </MDBListGroupItem>
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                       <MDBIcon
@@ -97,7 +96,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         icon="facebook fa-lg"
                         style={{ color: "#3b5998" }}
                       />
-                      <MDBCardText>mdbootstrap</MDBCardText>
+                      <MDBCardText>Lunges</MDBCardText>
                     </MDBListGroupItem>
                   </MDBListGroup>
                 </MDBCardBody>
@@ -112,7 +111,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                     </MDBCol>
                     <MDBCol sm="9">
                       <MDBCardText className="text-muted">
-                        Onkar Nora
+                        Test User
                       </MDBCardText>
                     </MDBCol>
                   </MDBRow>
@@ -123,7 +122,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                     </MDBCol>
                     <MDBCol sm="9">
                       <MDBCardText className="text-muted">
-                        onora@gmail.com
+                        test@gmail.com
                       </MDBCardText>
                     </MDBCol>
                   </MDBRow>
@@ -169,15 +168,15 @@ export const Dashboards = ({ isSidebarOpen }) => {
                     <MDBCardBody>
                       <MDBCardText className="mb-4">
                         <span className="text-primary font-italic me-1">
-                          assigment
+                          Average Accuracy
                         </span>{" "}
-                        Project Status
+                        of your Exercises
                       </MDBCardText>
                       <MDBCardText
                         className="mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        Web Design
+                        Hand Raise
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -191,7 +190,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         className="mt-4 mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        Website Markup
+                        Stretch
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -205,7 +204,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         className="mt-4 mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        One Page
+                        Pull-Ups
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -219,7 +218,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         className="mt-4 mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        Mobile Template
+                        Push-Ups
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -233,7 +232,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         className="mt-4 mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        Backend API
+                        Lunges
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -251,15 +250,15 @@ export const Dashboards = ({ isSidebarOpen }) => {
                     <MDBCardBody>
                       <MDBCardText className="mb-4">
                         <span className="text-primary font-italic me-1">
-                          assigment
+                        {/* Average Accuracy */}
                         </span>{" "}
-                        Project Status
+                        {/* of your Exercises */}
                       </MDBCardText>
                       <MDBCardText
                         className="mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        Web Design
+                        Chin Ups
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -273,7 +272,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         className="mt-4 mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        Website Markup
+                        Diamond Push-Ups
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -287,7 +286,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         className="mt-4 mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        One Page
+                        Squats
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -301,7 +300,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         className="mt-4 mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        Mobile Template
+                        Front Raises
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
@@ -315,7 +314,7 @@ export const Dashboards = ({ isSidebarOpen }) => {
                         className="mt-4 mb-1"
                         style={{ fontSize: ".77rem" }}
                       >
-                        Backend API
+                        Side Raises
                       </MDBCardText>
                       <MDBProgress className="rounded">
                         <MDBProgressBar
