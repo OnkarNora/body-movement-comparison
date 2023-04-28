@@ -127,10 +127,9 @@ function UploadVideo({ model_video, modalPoints }) {
 
     }
 
-    const useStandardVideoSize = (e) => {
+    const useStandardVideoSize = () => {
         setVideoInputSize({width: 360 ,height: 640});
         setVideoModelSize({width: 360,height: 640});
-        e.current.setAttribute('display','none')
     }
 
     const handleMetadataLoadInput = (()=>{
