@@ -101,7 +101,7 @@ const Analysis = ({input_data, modalPoints}) => {
 		data.push({
 			key: i,
 			name: bodyParts[i],
-			score: input_data[i],
+			score: input_data[i].toFixed(2),
 			tags: input_data[i]>75 ? ['nice'] : input_data[i]>50 ? ['average'] : ['poor'],
 		  })
 	  }
@@ -113,16 +113,18 @@ return (
 	{/* <p>{input_data}</p> */}
 	<Table columns={columns} dataSource={data} />
 	{/* <Line data={TEMPDATA} options={OPTIONS}/> */}
-	<h4>
-		Total Score : {input_data[input_data.length - 1]}
-		<Tag 
-			color={input_data[input_data.length - 1]>75 ? 'green' : input_data[input_data.length - 1]>50 ? 'yellow' : 'red'}
-			className="mx-3
-			"
-		>		
-			{input_data[input_data.length - 1]>75 ? 'Nice' : input_data[input_data.length - 1]>50 ? 'Average' : 'Poor'} 
-		</Tag>
-	</h4>
+	<div style={{height: '70px'}}>
+		<h4>
+			Total Score : {input_data[input_data.length - 1].toFixed(2)}
+			<Tag 
+				color={input_data[input_data.length - 1]>75 ? 'green' : input_data[input_data.length - 1]>50 ? 'yellow' : 'red'}
+				className="mx-3
+				"
+			>		
+				{input_data[input_data.length - 1]>75 ? 'Nice' : input_data[input_data.length - 1]>50 ? 'Average' : 'Poor'} 
+			</Tag>
+		</h4>
+	</div>
 	</div>
 );
 };
