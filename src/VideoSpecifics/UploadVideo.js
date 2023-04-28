@@ -13,14 +13,14 @@ function UploadVideo({ model_video, modalPoints }) {
     const [source, setSource] = useState();
     const [compared, setCompared] = useState(false);
     const [showAnalysis, setShowAnalysis] = useState(false);
+    const [videoWidth, setVideoWidth] = useState(500);
+    const [videoHeight, setVideoHeight] = useState(500);
     const inputRef = React.useRef();
 
     const frameRate = 24;
     const nextFrame = 1 / frameRate
 
     const defaultProps = {
-        videoWidth: window.innerWidth*0.20,
-        videoHeight: window.innerHeight*0.70,
         flipHorizontal: false,
         algorithm: 'single-pose',
         showVideo: true,
@@ -69,8 +69,8 @@ function UploadVideo({ model_video, modalPoints }) {
 
                 // Set the video URL in the state
                 const video = video2Ref.current
-                video.width = defaultProps.videoWidth
-                video.height = defaultProps.videoHeight
+                video.width = videoWidth
+                video.height = videoHeight
                 video.src = videoBlobUrl
             } catch (error) {
                 console.error(error);
@@ -78,8 +78,8 @@ function UploadVideo({ model_video, modalPoints }) {
         };
 
         const video = video2Ref.current
-        video.width = defaultProps.videoWidth
-        video.height = defaultProps.videoHeight
+        video.width = videoWidth
+        video.height = videoHeight
         video.src = model_video
 
         // fetchVideo();
@@ -103,8 +103,6 @@ function UploadVideo({ model_video, modalPoints }) {
         const canvasContext = canvas.getContext('2d')
         const {
             minPartConfidence,
-            videoWidth,
-            videoHeight,
             showVideo,
             showPoints,
             showSkeleton,
@@ -121,8 +119,8 @@ function UploadVideo({ model_video, modalPoints }) {
             canvasContext.clearRect(0, 0, videoWidth, videoHeight)
             if (showVideo) {
                 canvasContext.save()
-                canvasContext.scale(-1, 1)
-                canvasContext.translate(-videoWidth, 0)
+                // canvasContext.scale(-1, 1)
+                // canvasContext.translate(-videoWidth, 0)
                 canvasContext.drawImage(video, 0, 0, videoWidth, videoHeight)
                 canvasContext.restore()
             }
@@ -158,6 +156,15 @@ function UploadVideo({ model_video, modalPoints }) {
 
     }
 
+    useEffect(()=>{
+        if (videoRef.current) {
+            console.log("This is video : ", videoRef, videoRef.current.videoWidth, videoRef.current.videoHeight)
+            setVideoWidth(videoRef.current.videoWidth);
+            setVideoHeight(videoRef.current.videoHeight);
+        }
+
+    },[videoRef])
+// for input handle height width separatly and same for model both cant be same size
     return (
         <div>
             <div className='text-center'>
@@ -183,13 +190,13 @@ function UploadVideo({ model_video, modalPoints }) {
                     {
                         source && 
                         <div className='input-video-wrapper'>
-                            <video id='video' src={source} width={defaultProps.videoWidth} height={defaultProps.videoHeight} ref={videoRef}/>
+                            <video id='video' src={source} width={videoWidth} height={videoHeight} ref={videoRef}/>
                             <canvas  className="webcam" ref={canvasRef} />
                         </div>
                     }
 
                     <div className='model-video-wrapper'>
-                        <video crossOrigin='anonymous' id="videoNoShow" width={defaultProps.videoWidth} height={defaultProps.videoHeight} playsInline ref={video2Ref} />
+                        <video crossOrigin='anonymous' id="videoNoShow" width={videoWidth} height={videoHeight} playsInline ref={video2Ref} />
                         <canvas  className="webcam" ref={canvas2Ref} />
                     </div>
                 </div>
