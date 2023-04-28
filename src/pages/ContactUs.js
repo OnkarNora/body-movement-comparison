@@ -23,13 +23,13 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-form-container">
-      <h1 style={{color:'#383838'}}>Contact Us</h1>
+    <div className="contact-form-container ">
+      <h1 style={{color:'black'}}>Contact Us</h1>
       <form onSubmit={handleFormSubmit}>
         <table>
           <tbody>
             <tr>
-              <td>Name:</td>
+              <td style={{color:'black',fontWeight:'bold'}}>Name :</td>
               <td>
                 <input
                   type="text"
@@ -40,7 +40,7 @@ const Contact = () => {
               </td>
             </tr>
             <tr>
-              <td>Email:</td>
+              <td style={{color:'black',fontWeight:'bold'}}>Email :</td>
               <td>
                 <input
                   type="email"
@@ -51,7 +51,7 @@ const Contact = () => {
               </td>
             </tr>
             <tr>
-              <td>Message:</td>
+              <td style={{color:'black',fontWeight:'bold'}}>Message :</td>
               <td>
                 <textarea
                   value={message}

@@ -4,11 +4,14 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1596524430615-b46475ddff6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+    background-size: cover;
+    background-repeat: no-repeat; 
   }
   
-  .contact-form-container h2 {
-    margin-bottom: 2rem;
-    font-size: 2rem;
+  .contact-form-container h1 {
+    /* margin-bottom: 2rem; */
+    font-size: 3rem;
     text-align: center;
   }
   
@@ -27,7 +30,7 @@
   .contact-form-container td {
     padding: 1rem;
     font-size: 1.2rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1.5px solid #ccc;
   }
   
   .contact-form-container input,
