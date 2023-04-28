@@ -62,10 +62,12 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 						<FaIcons.FaBars onClick={showSidebar} />
 					</NavIcon>
 					<h5
+						className="title-font"
 						style={{
 							textAlign: "center",
 							marginLeft: "26vw",
 							color: "white",
+							fontWeight:"bold",
 						}}
 					>
 						ACCURACY CALCULATION FOR BODY MOVEMENT USING POSE NET

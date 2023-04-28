@@ -1,15 +1,3 @@
-// import React from "react";
-
-// const Contact = () => {
-// return (
-// 	<div className="contact">
-// 	<p style={{color:"blue"}}>email - gymwithml@gmail.com</p>
-// 	</div>
-// );
-// };
-
-// export default Contact;
-
 import React, { useState } from "react";
 // import firebase from "firebase";
 import "./ContactForm.css";
@@ -35,13 +23,13 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-form-container">
-      <h1 style={{color:'#383838'}}>Contact Us</h1>
+    <div className="contact-form-container ">
+      <h1 style={{color:'black'}}>Contact Us</h1>
       <form onSubmit={handleFormSubmit}>
         <table>
           <tbody>
             <tr>
-              <td>Name:</td>
+              <td style={{color:'black',fontWeight:'bold'}}>Name :</td>
               <td>
                 <input
                   type="text"
@@ -52,7 +40,7 @@ const Contact = () => {
               </td>
             </tr>
             <tr>
-              <td>Email:</td>
+              <td style={{color:'black',fontWeight:'bold'}}>Email :</td>
               <td>
                 <input
                   type="email"
@@ -63,7 +51,7 @@ const Contact = () => {
               </td>
             </tr>
             <tr>
-              <td>Message:</td>
+              <td style={{color:'black',fontWeight:'bold'}}>Message :</td>
               <td>
                 <textarea
                   value={message}
@@ -72,15 +60,10 @@ const Contact = () => {
                 />
               </td>
             </tr>
-            <tr>
-              <td></td>
-              <td>
-                <button type="submit">Submit</button>
-              </td>
-            </tr>
           </tbody>
         </table>
       </form>
+                <button style={{textAlign:'center'}}type="submit">Submit</button>
     </div>
   );
 };
