@@ -29,7 +29,7 @@ const Contact = () => {
         <table>
           <tbody>
             <tr>
-              <td style={{color:'black',fontWeight:'bold'}}>Name :</td>
+              <td style={{color:'white',fontWeight:'bold'}}>Name :</td>
               <td>
                 <input
                   type="text"
@@ -40,7 +40,7 @@ const Contact = () => {
               </td>
             </tr>
             <tr>
-              <td style={{color:'black',fontWeight:'bold'}}>Email :</td>
+              <td style={{color:'white',fontWeight:'bold'}}>Email :</td>
               <td>
                 <input
                   type="email"
@@ -51,7 +51,7 @@ const Contact = () => {
               </td>
             </tr>
             <tr>
-              <td style={{color:'black',fontWeight:'bold'}}>Message :</td>
+              <td style={{color:'white',fontWeight:'bold'}}>Message :</td>
               <td>
                 <textarea
                   value={message}

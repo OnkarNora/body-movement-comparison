@@ -73,7 +73,7 @@ export const AddExercisesOne = ({ setLoader }) => {
 
 	return (
 		<>
-		<div className="position-absolute top-50 start-50 translate-middle mt-5"  >
+		<div className="position-absolute top-50 start-50 translate-middle mt-5 ">
 			{
 				showAlert ? <div className="alert alert-success">Exercise Added Successfully</div> : null
 			}
