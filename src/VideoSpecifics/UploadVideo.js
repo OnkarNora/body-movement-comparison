@@ -123,6 +123,10 @@ function UploadVideo({ model_video, modalPoints }) {
 
     }
 
+    const SavePose = () => {
+
+    }
+
     const useStandardVideoSize = (e) => {
         setVideoInputSize({width: 360 ,height: 640});
         setVideoModelSize({width: 360,height: 640});
@@ -156,6 +160,7 @@ function UploadVideo({ model_video, modalPoints }) {
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(videoRef.current, canvasRef.current, inputData) }}>Show Skeleton input video</button>)}
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { showSkeleton(video2Ref.current, canvas2Ref.current, modelData) }}>Show Skeleton model video</button>)}
                 {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { setShowAnalysis(true) }}>Show Analysis</button>)}
+                {/* {compared && source && (<button type='button' className='btn btn-outline-dark m-3' onClick={() => { SavePose() }}>Save This Comparison</button>)} */}
                 {/* <button onClick={() => { setStatus(false) }}>Stop</button> */}
             </div>
             <div>
@@ -187,7 +192,7 @@ function UploadVideo({ model_video, modalPoints }) {
 
             </div>
 
-            {showAnalysis ? <Analysis modalPoints={modalPoints} input_data={scoreData} /> : null}
+            {showAnalysis ? <Analysis modalPoints={modalPoints} inputData={inputData} modelData ={modelData} scoreData={scoreData} /> : null}
 
         </div>
     )
