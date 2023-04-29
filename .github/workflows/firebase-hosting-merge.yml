@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 16
       - name: Setup the code
-        run: npm install
+        run: npm config set registry "https://registry.npmjs.com/" && npm install
       - name: Deploy to Firebase
         uses: mohammed-atif/firebase-publish-react@v1.0
         with:
