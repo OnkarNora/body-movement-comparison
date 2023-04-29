@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "perfect-pose-871b1"
-  }
+    "default": "perfect-pose-871b1",
+    "staging-allias": "perfect-pose-871b1"
+  },
+  "targets": {},
+  "etags": {}
 }
