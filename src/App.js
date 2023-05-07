@@ -32,7 +32,7 @@ function App() {
 	const [loader, setLoader] = useState(false);
 	const [modalVideo, setModalVideo] = useState(null);
 	const [modalPoints, setModalPoints] = useState([]);
-	const [status,setStatus]=React.useState(true) // chatbot
+	const [chatStatus,setChatStatus]=React.useState(true) // chatbot
 
 	return (
 		<>
@@ -58,10 +58,12 @@ function App() {
 					<Route exact path='/' element={<Home isSidebarOpen={isSidebarOpen} />} />
 				</Routes>
 			</Router>
-			<div className='chatbot'><div>
-          		<button id="button" onClick={()=>setStatus(true)} >Open Chatbot</button>
-          		<button id="button" onClick={()=>setStatus(false)}>Close Chatbot</button></div>
-				{status? <Chatbot config={config} messageParser={MessageParser} actionProvider={ActionProvider} /> :null}
+			<div className='chatbot'>
+				<div>
+					{chatStatus ? null : <button id="button" onClick={()=>setChatStatus(true)} >Open Chatbot</button>}
+					{chatStatus ? <button id="button" onClick={()=>setChatStatus(false)}>Close X</button> : null}
+				</div>
+				{chatStatus? <Chatbot config={config} messageParser={MessageParser} actionProvider={ActionProvider} /> :null}
 			</div>
 		</>
 	);
