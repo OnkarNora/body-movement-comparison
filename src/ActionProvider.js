@@ -45,19 +45,32 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       }));
     };
 
-  const handleDog = () => {
-    const botMessage = createChatBotMessage(
-      "Here's a nice dog picture for you!",
-      {
-        widget: 'dogPicture',
-      }
-    );
+    const handle6 = () => {
+      const botMessage = createChatBotMessage('100mb is the maximum video size limit and video quality should be atleast 360p.');
+    
+        setState((prev) => ({
+          ...prev,
+          messages: [...prev.messages, botMessage],
+        }));
+      };
+    
+      const handle7 = () => {
+        const botMessage = createChatBotMessage('Video file format must be .mp4 only.');
+      
+          setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+          }));
+        };
 
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
+        const handle8 = () => {
+          const botMessage = createChatBotMessage('Video must be recorded in well lit environment, and do not allow any part of body to move out of video frame while recording.');
+        
+            setState((prev) => ({
+              ...prev,
+              messages: [...prev.messages, botMessage],
+            }));
+          };
 
   // Put the handleHello and handleDog function in the actions object to pass to the MessageParser
   return (
@@ -70,7 +83,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handle3,
             handle4,
             handle5,
-            handleDog,
+            handle6,
+            handle7,
+            handle8,
           },
         });
       })}
