@@ -17,6 +17,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import LoadingScreen from './components/LoadingScreen';
 import Register from './pages/Register';
 
+// ---chat-bot
+import Chatbot from "react-chatbot-kit";
+import "react-chatbot-kit/build/main.css";
+import config from './config.js';
+import MessageParser from "./MessageParser.js";
+import ActionProvider from "./ActionProvider.js";
+//--------
+
 function App() {
 
 	const [user, loading, error] = useAuthState(auth);
@@ -24,33 +32,38 @@ function App() {
 	const [loader, setLoader] = useState(false);
 	const [modalVideo, setModalVideo] = useState(null);
 	const [modalPoints, setModalPoints] = useState([]);
+	const [status,setStatus]=React.useState(true) // chatbot
 
 	return (
-		<Router>
-			<Sidebar
-				isSidebarOpen={isSidebarOpen}
-				setIsSidebarOpen={setIsSidebarOpen}
-			/>
-			{
-				loader || loading ? <LoadingScreen /> : null
-			}
-			<Routes>
-				<Route path='/login' element={<Login setLoader={setLoader} />} />
-				<Route path='/contact' element={<Contact isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/dashboard' element={<Dashboards isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/register' element={<Register setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/explore/explore1' element={<ExploreOne setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/explore/explore2' element={<ExploreTwo setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/explore/explore3' element={<ExploreThree setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/contribute/contribute1' element={<ContributesOne setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/contribute/contribute2' element={<ContributesTwo setLoader={setLoader} />} />
-				<Route path='/addexercise/addexercise1' element={<AddExercisesOne setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
-				<Route path='/addexercise/addexercise2' element={<AddExercisesTwo setLoader={setLoader} />} />
-				<Route path='/process/video' element={<Method isSidebarOpen={isSidebarOpen} model_video={modalVideo} modalPoints={modalPoints} />} />
-				<Route path='/process/showgraph' element={<ShowGraph isSidebarOpen={isSidebarOpen} />} />
-				<Route exact path='/' element={<Home isSidebarOpen={isSidebarOpen} />} />
-			</Routes>
-		</Router>
+		<>
+			<Router>
+				<Sidebar
+					isSidebarOpen={isSidebarOpen}
+					setIsSidebarOpen={setIsSidebarOpen} />
+				{loader || loading ? <LoadingScreen /> : null}
+				<Routes>
+					<Route path='/login' element={<Login setLoader={setLoader} />} />
+					<Route path='/contact' element={<Contact isSidebarOpen={isSidebarOpen} />} />
+					<Route path='/dashboard' element={<Dashboards isSidebarOpen={isSidebarOpen} />} />
+					<Route path='/register' element={<Register setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+					<Route path='/explore/explore1' element={<ExploreOne setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+					<Route path='/explore/explore2' element={<ExploreTwo setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+					<Route path='/explore/explore3' element={<ExploreThree setModalPoints={setModalPoints} setModalVideo={setModalVideo} setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+					<Route path='/contribute/contribute1' element={<ContributesOne setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+					<Route path='/contribute/contribute2' element={<ContributesTwo setLoader={setLoader} />} />
+					<Route path='/addexercise/addexercise1' element={<AddExercisesOne setLoader={setLoader} isSidebarOpen={isSidebarOpen} />} />
+					<Route path='/addexercise/addexercise2' element={<AddExercisesTwo setLoader={setLoader} />} />
+					<Route path='/process/video' element={<Method isSidebarOpen={isSidebarOpen} model_video={modalVideo} modalPoints={modalPoints} />} />
+					<Route path='/process/showgraph' element={<ShowGraph isSidebarOpen={isSidebarOpen} />} />
+					<Route exact path='/' element={<Home isSidebarOpen={isSidebarOpen} />} />
+				</Routes>
+			</Router>
+			<div className='chatbot'><div>
+          		<button id="button" onClick={()=>setStatus(true)} >Open Chatbot</button>
+          		<button id="button" onClick={()=>setStatus(false)}>Close Chatbot</button></div>
+				{status? <Chatbot config={config} messageParser={MessageParser} actionProvider={ActionProvider} /> :null}
+			</div>
+		</>
 	);
 }
 

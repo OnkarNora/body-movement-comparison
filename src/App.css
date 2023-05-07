@@ -94,3 +94,22 @@
   display: flex;
   justify-content: space-around;
 }
+
+.chatbot {
+  text-align: center;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items:last baseline;
+  justify-content:end;
+  color: white;
+}
+
+#button {
+  background-color: rgb(55, 107, 126);
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  /* text-align: center; */
+  display: flex;
+}
