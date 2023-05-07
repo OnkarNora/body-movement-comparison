@@ -41,7 +41,10 @@ export const AddExercisesOne = ({ setLoader }) => {
 
 	const handleDropdownSelect = (eventKey) => {
 		console.log("This is being called : ", eventKey, selected)
-		if (selected.includes(eventKey)) {
+		if (eventKey === "SelectAll") {
+			setSelected(keyPoints);
+		}
+		else if (selected.includes(eventKey)) {
 			setSelected(selected.filter((key) => key !== eventKey));
 		} else {
 			setSelected([...selected, eventKey]);
@@ -106,6 +109,12 @@ export const AddExercisesOne = ({ setLoader }) => {
 					size="sm"
 					drop="up"
 				>
+					<Dropdown.Item
+							key={"SelectAll"}
+							eventKey={"SelectAll"}
+						>
+							Select All
+						</Dropdown.Item>
 					{keyPoints.map((keyPoint) => (
 						<Dropdown.Item
 							key={keyPoint}
@@ -117,6 +126,9 @@ export const AddExercisesOne = ({ setLoader }) => {
 						</Dropdown.Item>
 					))}
 				</DropdownButton>
+				<div style={{margin: "10px"}}>
+					{selected.map((val)=>{return val + ', '})}
+				</div>
 				<center>
 					<button type="submit" className="submit btn btn-primary " onClick={AddVideo} >
 						Submit<i className="icon-angle-right" ></i>
