@@ -20,10 +20,10 @@ function Method({model_video, isSidebarOpen, modalPoints}) {
                 <div id="cards_landscape_wrap-2" >
                     <div className="container"  >
                         <div className="row" >
-                        <h1>Choose a Method</h1>
-                            <div style={{display:'flex',justifyContent:'space-between',}} >
+                        {/* <h1>Choose a Method</h1> */}
+                            <div style={{display:'flex',justifyContent:'center',}} >
                                 
-                                <div className="col-xs-12  col-lg-4">
+                                <div className="col-xs-12 col-lg-4">
                                     <button onClick={()=>{setStep(2)}}>
                                         <div className="card-flyer">
                                             <div className="text-box">
@@ -38,7 +38,7 @@ function Method({model_video, isSidebarOpen, modalPoints}) {
                                         </div>
                                     </button>
                                 </div>
-                                <div className="col-xs-12  col-lg-4 ">
+                                {/* <div className="col-xs-12  col-lg-4 ">
                                     <button onClick={()=>{setStep(3)}}>
                                         <div className="card-flyer">
                                             <div className="text-box">
@@ -52,7 +52,7 @@ function Method({model_video, isSidebarOpen, modalPoints}) {
                                             </div>
                                         </div>
                                     </button>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

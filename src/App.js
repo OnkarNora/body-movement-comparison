@@ -37,9 +37,9 @@ function App() {
 	return (
 		<>
 			<Router>
-				<Sidebar
+				{user && <Sidebar
 					isSidebarOpen={isSidebarOpen}
-					setIsSidebarOpen={setIsSidebarOpen} />
+					setIsSidebarOpen={setIsSidebarOpen} />}
 				{loader || loading ? <LoadingScreen /> : null}
 				<Routes>
 					<Route path='/login' element={<Login setLoader={setLoader} />} />
@@ -58,13 +58,13 @@ function App() {
 					<Route exact path='/' element={<Home isSidebarOpen={isSidebarOpen} />} />
 				</Routes>
 			</Router>
-			<div className='chatbot'>
+			{user && <div className='chatbot'>
 				<div>
 					{chatStatus ? null : <button id="button" onClick={()=>setChatStatus(true)} >Open Chatbot</button>}
 					{chatStatus ? <button id="button" onClick={()=>setChatStatus(false)}>Close X</button> : null}
 				</div>
 				{chatStatus? <Chatbot config={config} messageParser={MessageParser} actionProvider={ActionProvider} /> :null}
-			</div>
+			</div>}
 		</>
 	);
 }
